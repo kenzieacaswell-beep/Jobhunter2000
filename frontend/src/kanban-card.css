@@ -1,0 +1,47 @@
+.application-card {
+  grid-template-columns: 1.5rem minmax(0, 1fr) 1.5rem;
+  align-items: start;
+}
+
+.drag-handle,
+.application-card-source {
+  display: grid;
+  place-items: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--muted, #69766f);
+}
+
+.drag-handle {
+  cursor: grab;
+}
+
+.drag-handle:active {
+  cursor: grabbing;
+}
+
+.application-card-link {
+  min-width: 0;
+  color: inherit;
+  text-decoration: none;
+}
+
+.application-card-link:hover strong,
+.application-card-link:focus-visible strong {
+  text-decoration: underline;
+}
+
+.application-card-source {
+  border-radius: 0.3rem;
+}
+
+.application-card-source:hover,
+.application-card-source:focus-visible,
+.drag-handle:focus-visible {
+  outline: 2px solid var(--accent, #347060);
+  outline-offset: 2px;
+  color: var(--accent, #347060);
+}
