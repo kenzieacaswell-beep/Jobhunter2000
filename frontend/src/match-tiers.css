@@ -1,0 +1,8 @@
+.tier{display:inline-flex;align-items:center;width:max-content;border-radius:99px;padding:3px 7px!important;text-transform:capitalize;font-size:10px;font-weight:800}
+.tier-strong{background:#dff2d5!important;color:#347044!important}
+.tier-good{background:#e8f3df!important;color:#527643!important}
+.tier-stretch{background:#fff1d5!important;color:#936322!important}
+.tier-low{background:#f3e8e5!important;color:#8a5149!important}
+.tier-excluded{background:#eceeed!important;color:#68736e!important}
+.fit-card .tier{margin:3px 0 6px}
+.source-connect{display:grid;grid-template-columns:110px 1fr;gap:5px;min-width:310px}.source-connect select,.source-connect input{border:1px solid #d8e1db;border-radius:7px;padding:6px;font-size:11px}.source-table td small.health{max-width:280px;white-space:normal}.source-table td .text-btn{margin-top:5px}
