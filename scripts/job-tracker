@@ -1,0 +1,16 @@
+#!/bin/zsh
+set -e
+PROJECT_DIR="${0:A:h:h}"
+PYTHON="$PROJECT_DIR/.venv/bin/python"
+case "${1:-help}" in
+  start) mkdir -p "$PROJECT_DIR/data"; nohup "$PYTHON" -m uvicorn app.main:app --host 127.0.0.1 --port 8765 >"$PROJECT_DIR/data/server.log" 2>&1 & echo $! >"$PROJECT_DIR/data/server.pid"; echo "Open http://127.0.0.1:8765" ;;
+  stop) test -f "$PROJECT_DIR/data/server.pid" && kill "$(<"$PROJECT_DIR/data/server.pid")" 2>/dev/null || true ;;
+  status) curl -fsS http://127.0.0.1:8765/api/health || { echo "Not running"; exit 1; } ;;
+  refresh) "$PYTHON" -m app.cli refresh ;;
+  key) "$PYTHON" -m app.cli set-deepseek-key ;;
+  gmail-auth) "$PYTHON" -m app.cli gmail-auth ;;
+  digest) "$PYTHON" -m app.cli send-digest "${2:-}" ;;
+  backup) curl -fsS -X POST http://127.0.0.1:8765/api/backup ;;
+  logs) tail -n 100 -f "$PROJECT_DIR/data/server.log" ;;
+  *) echo "Usage: scripts/job-tracker {start|stop|status|refresh|key|gmail-auth|digest|backup|logs}" ;;
+esac
